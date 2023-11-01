@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tally Count</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/scripts.js" defer type="module"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.10.0/cdn/themes/light.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.10.0/cdn/shoelace-autoloader.js"
+    ></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header__title">Tally Count</h1>
+      <tally-app></tally-app>
+    </header>
+    <noscript class="error">
+      <p>This web app requires JavaScript to work</p>
+    </noscript>
+    <main class="counter">
+      <input class="counter__value" data-key="number" readonly value="0" />
+      <div class="counter__actions">
+        <button
+          data-key="subtract"
+          class="counter__button counter__button_first"
+        >
+          -
+        </button>
+        <button data-key="add" class="counter__button">+</button>
+      </div>
+     
+    </main>
+
+    <div class="alert-duration">
+      <sl-button size="medium" pill data-button>Reset</sl-button>
+
+      <sl-alert variant="neutral" duration="2000" closable>
+        The counter has been reset.
+      </sl-alert>
+    </div>
+
+    <script>
+      const container = document.querySelector(".alert-duration");
+      const button = container.querySelector("sl-button");
+      const alert = container.querySelector("sl-alert");
+
+      button.addEventListener("click", () => alert.show());
+    </script>
+
+    <style>
+      .alert-duration sl-alert {
+        margin-top: var(--sl-spacing-medium);
+      }
+    </style>
+    <script>
+      const elements = {
+        number: document.querySelector('[data-key="number"]'),
+        subtract: document.querySelector('[data-key="subtract"]'),
+        add: document.querySelector('[data-key="add"]'),
+        reset: document.querySelector("[data-button]"),
+      };
+
+      const resetHandler = () => {
+        elements.number.value = "0";
+        elements.number.style.color = "white";
+        elements.subtract.disabled = false;
+        elements.add.disabled = false;
+      };
+
+      elements.reset.addEventListener("click", resetHandler);
+    </script>
+
+    <footer class="footer">
+      Inspired by
+      <a class="footer__link" href="https://tallycount.app/">Tally Count</a>.
+      Note that this is merely a student practice project for learning
+      JavaScript.
+    </footer>
+  </body>
+</html>
+
+<a href=""></a>
